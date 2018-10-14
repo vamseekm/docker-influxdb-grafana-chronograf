@@ -1,0 +1,29 @@
+version: "3"
+services:
+    influxdb:
+        image: influxdb:1.5
+        volumes:
+            - influxdb_data:/var/lib/influxdb
+        ports:
+            - 127.0.0.1:8086:8086
+        restart: always
+    chronograf:
+        image: chronograf:1.5
+        volumes:
+            - chronograf_data:/var/lib/chronograf
+        ports:
+            - 127.0.0.1:8087:8888
+        restart: always
+    grafana:
+        image: grafana/grafana
+        ports:
+            - 127.0.0.1:3000:3000
+        volumes:
+            - grafana_data:/var/lib/grafana
+        restart: always
+
+
+volumes:
+    influxdb_data:
+    chronograf_data:
+    grafana_data:
